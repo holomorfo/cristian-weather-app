@@ -11,7 +11,7 @@ formElement.addEventListener('submit', function(e) {
   messageOne.innerHTML = 'Loading';
   messageTwo.innerHTML = '';
   var searchValue = searchElement.value;
-  fetch('http://localhost:3001/weather?address=' + searchValue)
+  fetch('/weather?address=' + searchValue)
     .then(function(response) {
       response.json().then(function(data) {
         if (data.error) {
