@@ -51,12 +51,26 @@ app.get('/weather', function(req, res) {
     forecast(
       latitude,
       longitude,
-      (error, { temperature, precipProbability } = {}) => {
+      (
+        error,
+        {
+          temperature,
+          precipProbability,
+          humidity,
+          windSpeed,
+          pressure,
+          summary
+        } = {}
+      ) => {
         if (error) return res.send({ error: 'Error forecast' });
         res.send({
           temperature,
-          location,
           precipProbability,
+          humidity,
+          windSpeed,
+          pressure,
+          summary,
+          location,
           address: req.query.address
         });
       }

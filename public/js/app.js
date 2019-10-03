@@ -1,5 +1,3 @@
-console.log('This is a test');
-
 const formElement = document.querySelector('form');
 const searchElement = document.querySelector('input');
 const messageOne = document.querySelector('#message-one');
@@ -19,8 +17,26 @@ formElement.addEventListener('submit', function(e) {
           messageTwo.innerHTML = '';
         } else {
           console.log(data);
-          messageOne.innerHTML = 'Temperature ' + data.temperature;
-          messageTwo.innerHTML = 'Precipitation ' + data.precipProbability;
+          var {
+            address,
+            humidity,
+            location,
+            precipProbability,
+            pressure,
+            summary,
+            temperature,
+            windSpeed
+          } = data;
+          var description = `
+         The weather in ${location} is ${summary}
+         The temperature is ${temperature} degrees celsius, with a precipitation
+         probability of ${100 *
+           parseFloat(precipProbability)}% and humidity ${100 *
+            parseFloat(
+              humidity
+            )}%. The pressure is ${pressure}hPs, and wind speed ${windSpeed}m/s
+          `;
+          messageOne.innerHTML = description;
         }
       });
     })
